@@ -18,7 +18,7 @@ contract mintContract is ERC721URIStorage {
     }
 
     modifier onlyOwner() {
-        require(_owner == msg.sender, "Ownable: caller is not the owner");
+        require(_owner == msg.sender, "Error: caller is not the owner");
         _;
     }
 
@@ -36,5 +36,9 @@ contract mintContract is ERC721URIStorage {
 
     function owner() public view returns (address) {
         return _owner;
+    }
+
+    function highestTokenId() public view returns (uint256) {
+        return _currentTokenId > 0 ? _currentTokenId - 1 : 0;
     }
 }
